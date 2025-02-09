@@ -19,5 +19,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ffmpeg-layer
-          path: layer/ffmpeg-layer.zip
-          compression-level: 0
+          path: |
+            layer/ffmpeg-layer/python/lib/*/site-packages/* 
+            layer/ffmpeg-layer/bin/ffmpeg
+            layer/ffmpeg-layer/bin/readme.txt
+
+      - name: cleanup layer
+        run: rm -rf layer/ffmpeg-layer

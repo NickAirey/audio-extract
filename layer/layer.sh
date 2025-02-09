@@ -2,8 +2,8 @@
 set -e
 
 # make a temporary directory for the install
-TEMP=$(mktemp -d ./tmp.XXXXXX)
-pushd $TEMP
+mkdir ffmpeg-layer
+cd ffmpeg-layer
 
 # create a virtual env 
 python3 -m venv python
@@ -19,9 +19,9 @@ tar -xf ffmpeg.tar.xz -C bin --strip-components 1
 
 
 # zip the layer
-zip -r ../ffmpeg-layer.zip . --include "python/lib/*/site-packages/*" bin/ffmpeg bin/readme.txt
+# zip -r ../ffmpeg-layer.zip . --include "python/lib/*/site-packages/*" bin/ffmpeg bin/readme.txt
 
 
 # cleanup temp dir
-popd
-rm -rf $TEMP
+#popd
+#rm -rf $TEMP
