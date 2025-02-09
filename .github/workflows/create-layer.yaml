@@ -13,8 +13,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build layer
-        run: cd layer && chmod +x layer.sh && ./layer.sh
-
+        run: cd layer && mkdir ffmpeg-layer && cd ffmpeg-layer
+        run: python3 -m venv python && source python/bin/activate
+        run: pip install ffmpeg-python
+        run: mkdir bin
+        run: curl https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz -o ffmpeg.tar.xz
+        run: tar -xf ffmpeg.tar.xz --strip-components 1 -C bin
+        
       - name: Upload layer
         uses: actions/upload-artifact@v4
         with:
